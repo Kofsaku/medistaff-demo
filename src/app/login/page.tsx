@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const DEMO_CREDENTIALS = {
-  email: 'admin@medistaff.jp',
+  userId: 'admin',
   password: 'demo1234',
 };
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,13 +19,13 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    if (!email || !password) {
-      setError('メールアドレスとパスワードを入力してください');
+    if (!userId || !password) {
+      setError('ログインIDとパスワードを入力してください');
       return;
     }
 
-    if (email !== DEMO_CREDENTIALS.email || password !== DEMO_CREDENTIALS.password) {
-      setError('メールアドレスまたはパスワードが正しくありません');
+    if (userId !== DEMO_CREDENTIALS.userId || password !== DEMO_CREDENTIALS.password) {
+      setError('ログインIDまたはパスワードが正しくありません');
       return;
     }
 
@@ -57,15 +57,15 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                メールアドレス
+                ログインID
               </label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@medistaff.jp"
+                type="text"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+                placeholder="admin"
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-200 focus:border-blue-400 outline-none transition-all bg-gray-50 focus:bg-white"
-                autoComplete="email"
+                autoComplete="username"
                 autoFocus
               />
             </div>
