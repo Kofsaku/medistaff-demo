@@ -2,22 +2,19 @@
 
 import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { staffList } from '@/data/mockData';
+import { useStaff } from '@/lib/StaffContext';
 import StaffFilters from '@/components/staff/StaffFilters';
 import StaffTable from '@/components/staff/StaffTable';
-import StaffCreateModal from '@/components/staff/StaffCreateModal';
-import Toast from '@/components/ui/Toast';
 
 export default function StaffPage() {
   const router = useRouter();
+  const { staffList } = useStaff();
   const [searchQuery, setSearchQuery] = useState('');
   const [department, setDepartment] = useState('');
   const [jobType, setJobType] = useState('');
   const [employmentType, setEmploymentType] = useState('');
   const [sortKey, setSortKey] = useState('id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
-  const [createOpen, setCreateOpen] = useState(false);
-  const [toastVisible, setToastVisible] = useState(false);
 
   const filteredStaff = useMemo(() => {
     let data = [...staffList];
@@ -27,7 +24,8 @@ export default function StaffPage() {
       data = data.filter(
         (s) =>
           s.name.toLowerCase().includes(q) ||
-          s.id.toLowerCase().includes(q)
+          s.id.toLowerCase().includes(q) ||
+          s.nameKana.toLowerCase().includes(q)
       );
     }
     if (department) {
@@ -50,7 +48,7 @@ export default function StaffPage() {
     });
 
     return data;
-  }, [searchQuery, department, jobType, employmentType, sortKey, sortDir]);
+  }, [staffList, searchQuery, department, jobType, employmentType, sortKey, sortDir]);
 
   const handleSort = (key: string) => {
     if (sortKey === key) {
@@ -77,7 +75,7 @@ export default function StaffPage() {
         onJobTypeChange={setJobType}
         employmentType={employmentType}
         onEmploymentTypeChange={setEmploymentType}
-        onCreateClick={() => setCreateOpen(true)}
+        onCreateClick={() => router.push('/staff/new')}
       />
       <StaffTable
         staffData={filteredStaff}
@@ -85,16 +83,6 @@ export default function StaffPage() {
         sortDir={sortDir}
         onSort={handleSort}
         onDetailClick={handleDetailClick}
-      />
-      <StaffCreateModal
-        isOpen={createOpen}
-        onClose={() => setCreateOpen(false)}
-        onSuccess={() => setToastVisible(true)}
-      />
-      <Toast
-        message="職員情報を登録しました"
-        isVisible={toastVisible}
-        onClose={() => setToastVisible(false)}
       />
     </div>
   );

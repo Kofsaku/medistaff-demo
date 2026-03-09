@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { UserCheck, UserX, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { attendanceRecords } from '@/data/mockData';
+import { staffList } from '@/data/mockData';
 
 function formatDate(date: Date): string {
   const y = date.getFullYear();
@@ -45,26 +47,34 @@ export default function AttendanceBoard() {
   const nextDate = new Date(currentDate);
   nextDate.setDate(nextDate.getDate() + 1);
 
+  // Compute KPIs from actual data
+  const totalStaff = staffList.length;
+  const checkedIn = attendanceRecords.filter((r) => r.clockIn !== null).length;
+  const notCheckedIn = totalStaff - checkedIn;
+  const lateCount = attendanceRecords.filter((r) => r.status === '遅刻').length;
+  const onLeave = staffList.filter((s) => s.status === '休暇').length;
+  const attendanceRate = totalStaff > 0 ? Math.round((checkedIn / totalStaff) * 1000) / 10 : 0;
+
   const kpiCards = [
     {
       icon: <UserCheck className="w-6 h-6 text-green-600" />,
       iconBg: 'bg-green-100',
       label: '出勤済',
-      value: '142名',
-      subInfo: '全体の76.3%',
+      value: `${checkedIn}名`,
+      subInfo: `全体の${attendanceRate}%`,
     },
     {
       icon: <UserX className="w-6 h-6 text-amber-600" />,
       iconBg: 'bg-amber-100',
       label: '未出勤',
-      value: '44名',
-      subInfo: 'うち休暇12名、未打刻32名',
+      value: `${notCheckedIn}名`,
+      subInfo: `うち休暇${onLeave}名、未打刻${notCheckedIn - onLeave}名`,
     },
     {
       icon: <AlertCircle className="w-6 h-6 text-red-600" />,
       iconBg: 'bg-red-100',
       label: '遅刻',
-      value: '3名',
+      value: `${lateCount}名`,
       subInfo: '09:00基準',
     },
   ];

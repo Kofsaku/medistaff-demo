@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { Users, UserCheck, CalendarX2, TriangleAlert, ArrowUp } from 'lucide-react';
+import { staffList } from '@/data/mockData';
 
 interface KpiCardProps {
   icon: React.ReactNode;
@@ -70,20 +71,25 @@ function KpiCard({ icon, iconBg, label, targetValue, suffix, subInfo }: KpiCardP
 }
 
 export default function KpiCards() {
+  const totalStaff = staffList.length;
+  const activeStaff = staffList.filter((s) => s.status === '出勤').length;
+  const onLeave = staffList.filter((s) => s.status === '休暇').length;
+  const attendanceRate = Math.round((activeStaff / totalStaff) * 100 * 10) / 10;
+
   return (
     <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-6">
       <KpiCard
         icon={<Users className="w-5 h-5 text-blue-600" />}
         iconBg="bg-blue-100"
         label="総職員数"
-        targetValue={248}
+        targetValue={totalStaff}
         suffix="名"
         subInfo={
           <span className="flex items-center gap-1">
             前月比{' '}
             <span className="text-green-600 flex items-center">
               <ArrowUp className="w-3 h-3" />
-              +3
+              +2
             </span>
           </span>
         }
@@ -92,17 +98,17 @@ export default function KpiCards() {
         icon={<UserCheck className="w-5 h-5 text-green-600" />}
         iconBg="bg-green-100"
         label="本日出勤"
-        targetValue={186}
+        targetValue={activeStaff}
         suffix="名"
-        subInfo={<span>出勤率 75.0%</span>}
+        subInfo={<span>出勤率 {attendanceRate}%</span>}
       />
       <KpiCard
         icon={<CalendarX2 className="w-5 h-5 text-amber-600" />}
         iconBg="bg-amber-100"
         label="休暇中"
-        targetValue={12}
+        targetValue={onLeave}
         suffix="名"
-        subInfo={<span>有休: 8 / 特休: 4</span>}
+        subInfo={<span>有休: {Math.max(onLeave - 1, 0)} / 特休: {Math.min(onLeave, 1)}</span>}
       />
       <KpiCard
         icon={<TriangleAlert className="w-5 h-5 text-red-600" />}

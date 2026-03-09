@@ -38,15 +38,20 @@ export default function ShiftPage() {
 
   const handleMonthChange = useCallback((dir: number) => {
     setSelectedDate(null);
-    setMonth((prev) => {
-      let newMonth = prev + dir;
-      let newYear = year;
-      if (newMonth < 0) { newMonth = 11; newYear--; }
-      if (newMonth > 11) { newMonth = 0; newYear++; }
-      setYear(newYear);
-      return newMonth;
+    setYear((prevYear) => {
+      const newMonth = month + dir;
+      if (newMonth < 0) {
+        setMonth(11);
+        return prevYear - 1;
+      }
+      if (newMonth > 11) {
+        setMonth(0);
+        return prevYear + 1;
+      }
+      setMonth(newMonth);
+      return prevYear;
     });
-  }, [year]);
+  }, [month]);
 
   const handleShiftChange = useCallback((staffId: string, dayIndex: number, type: ShiftType) => {
     setShiftDataCache((prev) => {

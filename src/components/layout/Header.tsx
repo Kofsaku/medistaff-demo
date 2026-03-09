@@ -2,6 +2,7 @@
 
 import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { notifications } from "@/data/mockData";
 
 interface HeaderProps {
   onNotificationClick: () => void;
@@ -28,7 +29,7 @@ export default function Header({ onNotificationClick }: HeaderProps) {
         >
           <Bell className="h-5 w-5" />
           <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
-            3
+            {notifications.length}
           </span>
         </button>
 

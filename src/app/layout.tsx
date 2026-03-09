@@ -9,6 +9,7 @@ import Header from '@/components/layout/Header';
 import Breadcrumb from '@/components/layout/Breadcrumb';
 import NotificationDrawer from '@/components/ui/NotificationDrawer';
 import SettingsModal from '@/components/settings/SettingsModal';
+import { StaffProvider } from '@/lib/StaffContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,11 +46,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-white text-[#1E293B]`}>
         {isLoginPage ? (
-          // Login page: no sidebar/header
           children
         ) : authChecked ? (
-          // Authenticated layout
-          <>
+          <StaffProvider>
             <Header onNotificationClick={() => setNotificationOpen(true)} />
             <Sidebar onSettingsClick={() => setSettingsOpen(true)} />
             <main className="ml-64 mt-16 min-h-[calc(100vh-4rem)] overflow-x-hidden">
@@ -61,7 +60,6 @@ export default function RootLayout({
               </div>
             </main>
 
-            {/* Watermark */}
             <div className="fixed bottom-4 right-4 text-xs opacity-30 select-none z-10">
               DEMO | miitaso Inc.
             </div>
@@ -74,9 +72,8 @@ export default function RootLayout({
               isOpen={settingsOpen}
               onClose={() => setSettingsOpen(false)}
             />
-          </>
+          </StaffProvider>
         ) : (
-          // Loading state while checking auth
           <div className="min-h-screen flex items-center justify-center">
             <div className="animate-spin w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full" />
           </div>

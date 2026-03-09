@@ -89,13 +89,13 @@ export default function LeaveTable({ leaveData, onApprove, onReject }: LeaveTabl
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => onApprove(leave.id)}
-                        className="px-3 py-1 text-xs font-medium text-green-600 border border-green-600 rounded hover:bg-green-50 transition-colors"
+                        className="px-3 py-1.5 text-xs font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
                       >
                         承認
                       </button>
                       <button
                         onClick={() => onReject(leave.id)}
-                        className="px-3 py-1 text-xs font-medium text-red-600 border border-red-600 rounded hover:bg-red-50 transition-colors"
+                        className="px-3 py-1.5 text-xs font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
                       >
                         却下
                       </button>

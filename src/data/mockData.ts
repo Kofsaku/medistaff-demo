@@ -58,7 +58,114 @@ export const staffList: Staff[] = [
   { id: 'EMP-009', name: '小林大輔', nameKana: 'こばやし だいすけ', department: 'リハビリテーション科', jobType: '技師', employmentType: '常勤', joinDate: '2019/04/01', status: '出勤', birthDate: '1991/06/30', gender: '男性', phone: '090-9012-3456', email: 'd.kobayashi@hospital.example.jp', address: '東京都世田谷区三軒茶屋9-9-9', position: '一般' },
   { id: 'EMP-011', name: '吉田拓也', nameKana: 'よしだ たくや', department: '検査科', jobType: '技師', employmentType: '常勤', joinDate: '2020/08/01', status: '出勤', birthDate: '1993/10/22', gender: '男性', phone: '090-1111-2222', email: 't.yoshida@hospital.example.jp', address: '東京都文京区本郷11-11-11', position: '一般' },
   { id: 'EMP-012', name: '松本さくら', nameKana: 'まつもと さくら', department: '栄養科', jobType: 'その他', employmentType: 'パート', joinDate: '2023/01/10', status: '出勤', birthDate: '1998/04/01', gender: '女性', phone: '090-3333-4444', email: 's.matsumoto@hospital.example.jp', address: '東京都台東区上野12-12-12', position: '一般' },
+
+  // Auto-generated staff to fill departments realistically (~100 total)
+  ...generateExtraStaff(),
 ];
+
+function generateExtraStaff(): Staff[] {
+  const surnames = [
+    { kanji: '佐々木', kana: 'ささき' }, { kanji: '松田', kana: 'まつだ' }, { kanji: '青木', kana: 'あおき' },
+    { kanji: '藤田', kana: 'ふじた' }, { kanji: '金子', kana: 'かねこ' }, { kanji: '太田', kana: 'おおた' },
+    { kanji: '石井', kana: 'いしい' }, { kanji: '小川', kana: 'おがわ' }, { kanji: '後藤', kana: 'ごとう' },
+    { kanji: '堀', kana: 'ほり' }, { kanji: '菅原', kana: 'すがわら' }, { kanji: '竹内', kana: 'たけうち' },
+    { kanji: '今井', kana: 'いまい' }, { kanji: '安藤', kana: 'あんどう' }, { kanji: '久保', kana: 'くぼ' },
+    { kanji: '平野', kana: 'ひらの' }, { kanji: '川崎', kana: 'かわさき' }, { kanji: '工藤', kana: 'くどう' },
+    { kanji: '北村', kana: 'きたむら' }, { kanji: '杉山', kana: 'すぎやま' }, { kanji: '白石', kana: 'しらいし' },
+    { kanji: '中島', kana: 'なかじま' }, { kanji: '古川', kana: 'ふるかわ' }, { kanji: '高木', kana: 'たかぎ' },
+    { kanji: '水野', kana: 'みずの' }, { kanji: '谷口', kana: 'たにぐち' }, { kanji: '新井', kana: 'あらい' },
+    { kanji: '小野', kana: 'おの' }, { kanji: '馬場', kana: 'ばば' }, { kanji: '菊地', kana: 'きくち' },
+    { kanji: '横山', kana: 'よこやま' }, { kanji: '上田', kana: 'うえだ' }, { kanji: '大西', kana: 'おおにし' },
+    { kanji: '千葉', kana: 'ちば' }, { kanji: '片山', kana: 'かたやま' }, { kanji: '永井', kana: 'ながい' },
+    { kanji: '岩崎', kana: 'いわさき' }, { kanji: '宮本', kana: 'みやもと' }, { kanji: '秋山', kana: 'あきやま' },
+    { kanji: '関', kana: 'せき' }, { kanji: '大野', kana: 'おおの' }, { kanji: '丸山', kana: 'まるやま' },
+    { kanji: '河野', kana: 'こうの' }, { kanji: '田村', kana: 'たむら' }, { kanji: '森', kana: 'もり' },
+    { kanji: '武田', kana: 'たけだ' }, { kanji: '飯田', kana: 'いいだ' }, { kanji: '小島', kana: 'こじま' },
+    { kanji: '星野', kana: 'ほしの' }, { kanji: '浜田', kana: 'はまだ' }, { kanji: '奥田', kana: 'おくだ' },
+    { kanji: '土屋', kana: 'つちや' }, { kanji: '本田', kana: 'ほんだ' }, { kanji: '須藤', kana: 'すどう' },
+    { kanji: '黒田', kana: 'くろだ' }, { kanji: '桜井', kana: 'さくらい' }, { kanji: '野村', kana: 'のむら' },
+    { kanji: '松井', kana: 'まつい' }, { kanji: '吉川', kana: 'よしかわ' }, { kanji: '荒木', kana: 'あらき' },
+    { kanji: '増田', kana: 'ますだ' }, { kanji: '富田', kana: 'とみた' }, { kanji: '内藤', kana: 'ないとう' },
+    { kanji: '矢野', kana: 'やの' }, { kanji: '杉本', kana: 'すぎもと' }, { kanji: '山下', kana: 'やました' },
+    { kanji: '浅野', kana: 'あさの' },
+  ];
+  const givenNamesM = [
+    { kanji: '大輝', kana: 'だいき' }, { kanji: '悠人', kana: 'ゆうと' }, { kanji: '蓮', kana: 'れん' },
+    { kanji: '陸', kana: 'りく' }, { kanji: '颯太', kana: 'そうた' }, { kanji: '樹', kana: 'いつき' },
+    { kanji: '湊', kana: 'みなと' }, { kanji: '朝陽', kana: 'あさひ' }, { kanji: '奏', kana: 'かなで' },
+    { kanji: '拓真', kana: 'たくま' }, { kanji: '和也', kana: 'かずや' }, { kanji: '直人', kana: 'なおと' },
+    { kanji: '健太郎', kana: 'けんたろう' }, { kanji: '慎一', kana: 'しんいち' }, { kanji: '雅彦', kana: 'まさひこ' },
+  ];
+  const givenNamesF = [
+    { kanji: '結衣', kana: 'ゆい' }, { kanji: '陽菜', kana: 'ひな' }, { kanji: '凛', kana: 'りん' },
+    { kanji: '葵', kana: 'あおい' }, { kanji: '紬', kana: 'つむぎ' }, { kanji: '芽依', kana: 'めい' },
+    { kanji: '莉子', kana: 'りこ' }, { kanji: '美月', kana: 'みづき' }, { kanji: '彩花', kana: 'あやか' },
+    { kanji: '琴音', kana: 'ことね' }, { kanji: '千尋', kana: 'ちひろ' }, { kanji: '明日香', kana: 'あすか' },
+    { kanji: '沙織', kana: 'さおり' }, { kanji: '恵美', kana: 'えみ' }, { kanji: '由紀子', kana: 'ゆきこ' },
+  ];
+
+  // Distribution: department -> { jobType, count }[]
+  const deptConfig: { dept: string; roles: { job: string; count: number }[] }[] = [
+    { dept: '内科病棟', roles: [{ job: '看護師', count: 5 }, { job: '医師', count: 2 }] },
+    { dept: '外科病棟', roles: [{ job: '看護師', count: 5 }, { job: '医師', count: 1 }] },
+    { dept: '救急科', roles: [{ job: '看護師', count: 4 }, { job: '医師', count: 2 }] },
+    { dept: '小児科', roles: [{ job: '看護師', count: 3 }, { job: '医師', count: 1 }] },
+    { dept: '産婦人科', roles: [{ job: '看護師', count: 3 }, { job: '医師', count: 1 }] },
+    { dept: '放射線科', roles: [{ job: '技師', count: 3 }] },
+    { dept: '事務部', roles: [{ job: '事務職', count: 5 }] },
+    { dept: '薬剤部', roles: [{ job: '薬剤師', count: 4 }] },
+    { dept: 'リハビリテーション科', roles: [{ job: '技師', count: 4 }] },
+    { dept: '検査科', roles: [{ job: '技師', count: 3 }] },
+    { dept: '栄養科', roles: [{ job: 'その他', count: 3 }] },
+  ];
+
+  const result: Staff[] = [];
+  let idx = 35;
+  let nameIdx = 0;
+  const empTypes: ('常勤' | '非常勤' | 'パート')[] = ['常勤', '常勤', '常勤', '非常勤', 'パート'];
+  const statuses: ('出勤' | '休暇')[] = ['出勤', '出勤', '出勤', '出勤', '休暇'];
+  const positions = ['一般', '一般', '一般', '主任', '一般'];
+  const areas = ['千代田区', '港区', '新宿区', '文京区', '台東区', '墨田区', '江東区', '品川区', '目黒区', '大田区', '世田谷区', '渋谷区', '中野区', '杉並区', '豊島区', '北区', '荒川区', '板橋区', '練馬区', '足立区', '葛飾区', '江戸川区'];
+
+  for (const { dept, roles } of deptConfig) {
+    for (const { job, count } of roles) {
+      for (let i = 0; i < count; i++) {
+        const isFemale = (nameIdx + i) % 2 === 0;
+        const sn = surnames[nameIdx % surnames.length];
+        const gn = isFemale
+          ? givenNamesF[(nameIdx + i) % givenNamesF.length]
+          : givenNamesM[(nameIdx + i) % givenNamesM.length];
+        const id = `EMP-${String(idx).padStart(3, '0')}`;
+        const birthYear = 1978 + (nameIdx % 22);
+        const birthMonth = ((nameIdx * 3 + i * 7) % 12) + 1;
+        const birthDay = ((nameIdx * 5 + i * 3) % 28) + 1;
+        const joinYear = 2014 + (nameIdx % 12);
+        const joinMonth = ((nameIdx + i) % 3 === 0) ? '04' : ((nameIdx + i) % 3 === 1 ? '10' : '01');
+
+        result.push({
+          id,
+          name: `${sn.kanji}${gn.kanji}`,
+          nameKana: `${sn.kana} ${gn.kana}`,
+          department: dept,
+          jobType: job,
+          employmentType: empTypes[(nameIdx + i) % empTypes.length],
+          joinDate: `${joinYear}/${joinMonth}/01`,
+          status: statuses[(nameIdx + i) % statuses.length],
+          birthDate: `${birthYear}/${String(birthMonth).padStart(2, '0')}/${String(birthDay).padStart(2, '0')}`,
+          gender: isFemale ? '女性' : '男性',
+          phone: `090-${String(1000 + idx).slice(-4)}-${String(2000 + idx).slice(-4)}`,
+          email: `${sn.kana.charAt(0)}.${gn.kana}@hospital.example.jp`,
+          address: `東京都${areas[nameIdx % areas.length]}${idx}-${idx}-${idx}`,
+          position: positions[(nameIdx + i) % positions.length],
+        });
+        idx++;
+        nameIdx++;
+      }
+    }
+  }
+
+  return result;
+}
 
 export const qualifications: Record<string, Qualification[]> = {
   'EMP-001': [

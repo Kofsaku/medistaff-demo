@@ -18,6 +18,19 @@ export default function Breadcrumb() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // Handle /staff/new
+  if (pathname === '/staff/new') {
+    return (
+      <nav aria-label="パンくずリスト" className="flex items-center gap-1 text-sm">
+        <Link href="/" className="text-[#64748B] transition-colors duration-200 hover:text-gray-900">ホーム</Link>
+        <ChevronRight className="h-4 w-4 text-[#64748B] shrink-0" />
+        <Link href="/staff" className="text-[#64748B] transition-colors duration-200 hover:text-gray-900">職員管理</Link>
+        <ChevronRight className="h-4 w-4 text-[#64748B] shrink-0" />
+        <span className="text-[#1E293B] font-medium">新規登録</span>
+      </nav>
+    );
+  }
+
   // Handle /staff/[id] detail pages
   const staffDetailMatch = pathname.match(/^\/staff\/(.+)$/);
   if (staffDetailMatch) {
@@ -27,19 +40,9 @@ export default function Breadcrumb() {
 
     return (
       <nav aria-label="パンくずリスト" className="flex items-center gap-1 text-sm">
-        <Link
-          href="/"
-          className="text-[#64748B] transition-colors duration-200 hover:text-gray-900"
-        >
-          ホーム
-        </Link>
+        <Link href="/" className="text-[#64748B] transition-colors duration-200 hover:text-gray-900">ホーム</Link>
         <ChevronRight className="h-4 w-4 text-[#64748B] shrink-0" />
-        <Link
-          href="/staff"
-          className="text-[#64748B] transition-colors duration-200 hover:text-gray-900"
-        >
-          職員管理
-        </Link>
+        <Link href="/staff" className="text-[#64748B] transition-colors duration-200 hover:text-gray-900">職員管理</Link>
         <ChevronRight className="h-4 w-4 text-[#64748B] shrink-0" />
         <span className="text-[#1E293B] font-medium">{staffName}</span>
       </nav>

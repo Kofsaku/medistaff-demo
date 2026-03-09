@@ -298,7 +298,15 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               キャンセル
             </button>
             <button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                // Brief visual feedback via a temporary toast-like effect
+                const el = document.createElement('div');
+                el.className = 'fixed bottom-6 right-6 z-[100] bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg text-sm font-medium animate-[fadeIn_0.2s_ease-out]';
+                el.textContent = '設定を保存しました';
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 2000);
+              }}
               className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
             >
               保存

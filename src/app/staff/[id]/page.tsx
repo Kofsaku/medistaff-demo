@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { staffList, qualifications } from '@/data/mockData';
+import { qualifications } from '@/data/mockData';
+import { useStaff } from '@/lib/StaffContext';
 
 const jobTypeBadgeColor: Record<string, string> = {
   '医師': 'bg-blue-100 text-blue-700',
@@ -41,6 +42,7 @@ export default function StaffDetailPage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabKey>('basic');
 
+  const { staffList } = useStaff();
   const staffId = params.id as string;
   const staff = staffList.find((s) => s.id === staffId);
 
