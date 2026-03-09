@@ -1,22 +1,21 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { staffList } from '@/data/mockData';
 import StaffFilters from '@/components/staff/StaffFilters';
 import StaffTable from '@/components/staff/StaffTable';
-import StaffDetail from '@/components/staff/StaffDetail';
 import StaffCreateModal from '@/components/staff/StaffCreateModal';
 import Toast from '@/components/ui/Toast';
 
 export default function StaffPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [department, setDepartment] = useState('');
   const [jobType, setJobType] = useState('');
   const [employmentType, setEmploymentType] = useState('');
   const [sortKey, setSortKey] = useState('id');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
-  const [detailStaffId, setDetailStaffId] = useState<string | null>(null);
-  const [detailOpen, setDetailOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
 
@@ -63,8 +62,7 @@ export default function StaffPage() {
   };
 
   const handleDetailClick = (id: string) => {
-    setDetailStaffId(id);
-    setDetailOpen(true);
+    router.push(`/staff/${id}`);
   };
 
   return (
@@ -87,11 +85,6 @@ export default function StaffPage() {
         sortDir={sortDir}
         onSort={handleSort}
         onDetailClick={handleDetailClick}
-      />
-      <StaffDetail
-        staffId={detailStaffId}
-        isOpen={detailOpen}
-        onClose={() => setDetailOpen(false)}
       />
       <StaffCreateModal
         isOpen={createOpen}

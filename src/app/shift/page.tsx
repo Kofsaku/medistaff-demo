@@ -103,7 +103,7 @@ export default function ShiftPage() {
 
       <div className="flex gap-4">
         {/* Main calendar area */}
-        <div className={`transition-all ${selectedDate ? 'flex-1 min-w-0' : 'w-full'}`}>
+        <div className="flex-1 min-w-0">
           <ShiftCalendarGrid
             year={year}
             month={month}
@@ -116,7 +116,7 @@ export default function ShiftPage() {
         </div>
 
         {/* Side panel: Day detail or Summary */}
-        <div className={`flex-shrink-0 transition-all ${selectedDate ? 'w-80' : 'w-72'}`}>
+        <div className="flex-shrink-0 w-80">
           {selectedDate ? (
             <ShiftDayDetail
               year={year}
@@ -126,6 +126,7 @@ export default function ShiftPage() {
               shiftData={shiftData}
               onShiftChange={handleShiftChange}
               onClose={() => setSelectedDate(null)}
+              selectedStaff={selectedStaff}
             />
           ) : (
             <ShiftSummary

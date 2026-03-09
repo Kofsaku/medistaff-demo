@@ -110,22 +110,7 @@ export default function LoginPage() {
           </form>
         </div>
 
-        {/* Demo credentials hint */}
-        <div className="mt-6 bg-white/70 backdrop-blur rounded-xl border border-gray-200 p-4">
-          <p className="text-xs font-semibold text-gray-500 mb-2">デモ用アカウント</p>
-          <div className="space-y-1 text-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-gray-500">メール:</span>
-              <code className="bg-gray-100 px-2 py-0.5 rounded text-gray-700 text-xs font-mono">admin@medistaff.jp</code>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-500">パスワード:</span>
-              <code className="bg-gray-100 px-2 py-0.5 rounded text-gray-700 text-xs font-mono">demo1234</code>
-            </div>
-          </div>
-        </div>
-
-        <p className="text-center text-xs text-gray-400 mt-6">DEMO | miitaso Inc.</p>
+        <p className="text-center text-xs text-gray-400 mt-8">DEMO | miitaso Inc.</p>
       </div>
     </div>
   );
